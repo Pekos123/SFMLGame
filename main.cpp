@@ -1,6 +1,5 @@
 ﻿#include <SFML/Graphics.hpp>
-#include "Entity.h"
-#include <iostream>
+#include "Engine.h"
 
 int main()
 {
