@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 #include "SFML/Graphics.hpp"
+#include "Alert.h"
 
 class Engine
 {
@@ -15,7 +16,7 @@ private:
 			sf::FloatRect bounds = sprite->getLocalBounds();
 			if (bounds.size == sf::Vector2f(0, 0))
 			{
-				std::cerr << "Sprite ma zerowy rozmiar -> prawdopodobnie brak tekstury!" << std::endl;
+				Alert::WARNING("Sprite ma zerowy rozmiar -> prawdopodobnie brak tekstury!");
 				continue;
 			}
 			window->draw(*sprite);

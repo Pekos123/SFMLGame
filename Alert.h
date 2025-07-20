@@ -12,17 +12,17 @@ private:
         switch (type)
         {
         case Default:
-            std::cout << "Alert: ";
+            std::cerr << "Alert: ";
             break;
         case Error:
-            std::cout << "\033[31mERROR: ";
+            std::cerr << "\033[31mERROR: ";
             break;
         case Warning:
-            std::cout << "\033[33mWarning: ";
+            std::cerr << "\033[33mWarning: ";
             break;
         }
-        std::cout << "\033[0m";
-        std::cout << file << " | " << line << " : " << msg;
+        std::cerr << "\033[0m";
+        std::cerr << file << " | " << line << " : " << msg;
         return new Alert();
     }
 
