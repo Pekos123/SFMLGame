@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.h"
+#include "Alert.h"
 #include "Transform.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -19,7 +20,7 @@ public:
     {
         if (!texture.loadFromFile(path))
         {
-            std::cout << "Nie uda³o siê za³adowaæ tekstury: " << path << std::endl;
+            Alert::WARNING("Nie uda³o siê za³adowaæ tekstury: " + path);
             return false;
         }
         if (sprite)
