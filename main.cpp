@@ -3,7 +3,7 @@
 
 int main()
 {
-    sf::RenderWindow* window = Engine::CreateWindow({ 200, 200 }, "SFML works!");
+    sf::RenderWindow* window = Engine::CreateWindow({ 400, 400 }, "Game!");
 
     while (window->isOpen())
     {
