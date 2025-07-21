@@ -7,8 +7,9 @@
 class Engine
 {
 private:
+	inline static sf::RenderWindow window;
 	inline static std::vector<sf::Sprite*> spritesToDraw;
-	inline static void Draw(sf::RenderWindow* window)
+	inline static void Draw()
 	{
 		std::vector<sf::Sprite*> sprites = Engine::getSpritesToDraw();
 		for (sf::Sprite* sprite : sprites)
@@ -19,7 +20,7 @@ private:
 				Alert::WARNING("Sprite ma zerowy rozmiar -> prawdopodobnie brak tekstury!");
 				continue;
 			}
-			window->draw(*sprite);
+			window.draw(*sprite);
 		}
 	}
 public:
@@ -32,11 +33,23 @@ public:
 	{
 		spritesToDraw.push_back(sprite);
 	}
-	static void Update(sf::RenderWindow* window)
+	static void Update()
 	{
-		window->clear();
-		Draw(window);
-		window->display();
+		window.clear();
+		Draw();
+		window.display();
+	}
+	static sf::RenderWindow* CreateWindow(const sf::Vector2u& size, const std::string& title)
+	{
+		window = sf::RenderWindow(sf::VideoMode(size), title);
+		return &window;
+	}
+	static sf::RenderWindow* GetWindow()
+	{
+		if(&window != nullptr)
+			return &window;
+		else
+			Alert::ERROR("There is no window created, create window first")
 	}
 };
 

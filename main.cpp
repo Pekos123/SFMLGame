@@ -3,14 +3,15 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode({ 200, 200 }), "SFML works!");
-    while (window.isOpen())
+    sf::RenderWindow* window = Engine::CreateWindow({ 200, 200 }, "SFML works!");
+
+    while (window->isOpen())
     {
-        while (const std::optional event = window.pollEvent())
+        while (const std::optional event = window->pollEvent())
         {
             if (event->is<sf::Event::Closed>())
-                window.close();
+                window->close();
         }
-        Engine::Update(&window);
+        Engine::Update();
     }
 }
