@@ -1,4 +1,7 @@
 #include "Engine.h"
+#include "Alert.h"
+
+float Engine::deltaTime = 0.0f;
 
 ///////////
 //PRIVATE//
@@ -10,7 +13,7 @@ void Engine::DrawSprites()
 		sf::FloatRect bounds = sprite->getLocalBounds();
 		if (bounds.size == sf::Vector2f(0, 0))
 		{
-			Alert::WARNING("Sprite ma zerowy rozmiar -> prawdopodobnie brak tekstury!");
+			Alert::WARNING("Sprite have size of 0 -> propably no texture!");
 			continue;
 		}
 		window.draw(*sprite);
@@ -27,20 +30,20 @@ void Engine::SyncSpirtesPositionsWithTransform()
 //////////
 //PUBLIC//
 //////////
-void AddSprite(sf::Sprite* sprite)
+void Engine::AddSprite(sf::Sprite* sprite)
 {
 	spritesArray.push_back(sprite);
 }
-void AddTransform(Transform* transform)
+void Engine::AddTransform(Transform* transform)
 {
 	transformsArray.push_back(transform);
 }
-void AddEntity(Entity* entity)
+void Engine::AddEntity(Entity* entity)
 {
 	entitesArray.push_back(entity);
 }
 
-sf::RenderWindow* CreateWindow(const sf::Vector2u& size, const std::string& title, bool fullscreen = false)
+sf::RenderWindow* Engine::CreateWindow(const sf::Vector2u& size, const std::string& title, bool fullscreen)
 {
 	windowTitle = title;
 	windowFullscreen = fullscreen;
@@ -50,23 +53,23 @@ sf::RenderWindow* CreateWindow(const sf::Vector2u& size, const std::string& titl
 
 	return &window;
 }
-sf::RenderWindow* GetWindow()
+sf::RenderWindow* Engine::GetWindow()
 {
 	if (&window != nullptr)
 		return &window;
 	else
 		Alert::ERROR("There is no window created, create window first");
 }
-void SetResolution(const sf::Vector2u& size)
+void Engine::SetResolution(const sf::Vector2u& size)
 {
 	window.setSize(size);
 }
-void SetFullscreen(const bool& fullscreen = false, const sf::Vector2u& size = window.getSize())
+void Engine::SetFullscreen(const bool& fullscreen, const sf::Vector2u& size)
 {
 	CreateWindow(window.getSize(), windowTitle, fullscreen);
 }
 
-void Update()
+void Engine::Update()
 {
 	deltaTime = (float)gameClock.restart().asMilliseconds();
 
