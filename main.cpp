@@ -8,14 +8,10 @@ int main()
     sf::RenderWindow* window = Engine::CreateWindow({ 1280, 720 }, "Game!");
     Entity entity;
     entity.SetTexture("images/sprite2.jpg");
-    sf::Vector2u colSize = entity.texture.getSize();
-    entity.colider->size = new sf::Vector2u(colSize);
     entity.position = { 20, 20 };
 
     Entity test;
     test.SetTexture("images/sprite2.jpg");
-    colSize = test.texture.getSize();;
-    test.colider->size = new sf::Vector2u(colSize);
     test.position = { 500, -50 };
 
     float speed = 1;
@@ -29,7 +25,7 @@ int main()
                 window->close();
         }
         
-        if (Physics::CheckCollision(&entity, &test)) // idk
+        if (Physics::CheckCollision(&entity, &test))
         {
             i++;
             std::cout << i << std::endl;
