@@ -27,10 +27,8 @@ void Engine::SyncSpirtesPositionsWithTransform()
 		entity->sprite->setPosition({ entity->position.x, -entity->position.y });
 	}
 }
-void Engine::DrawColiders(bool draw)
+void Engine::DrawColiders()
 {
-	if (!draw)
-		return;
 	for (Entity* entity : entitesArray)
 	{
 		if (!entity->colider)
@@ -96,6 +94,8 @@ void Engine::Update()
 	window.clear();
 	SyncSpirtesPositionsWithTransform();
 	DrawSprites();
-	DrawColiders(true);
+#ifdef _DEBUG
+	DrawColiders();
+#endif
 	window.display();
 }
