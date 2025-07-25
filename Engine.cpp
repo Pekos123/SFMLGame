@@ -29,6 +29,9 @@ void Engine::SyncSpirtesPositionsWithTransform()
 }
 void Engine::DrawColiders()
 {
+	const int borderThinkness = 4;
+	const sf::Color transparent({0, 0, 0, 0});
+
 	for (Entity* entity : entitesArray)
 	{
 		if (!entity->colider)
@@ -39,8 +42,8 @@ void Engine::DrawColiders()
 
 		shape.setPosition({ entity->position.x, -entity->position.y });
 		shape.setOutlineColor(sf::Color::Blue);
-		shape.setOutlineThickness(4);
-		shape.setFillColor({0, 0, 0, 0});
+		shape.setOutlineThickness(borderThinkness);
+		shape.setFillColor(transparent);
 
 		window.draw(shape);
 	}
