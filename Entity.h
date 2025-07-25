@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Transform.h"
+#include "Colider.h"
 
 class Entity : public Transform
 {
@@ -13,6 +14,7 @@ public:
     ~Entity();
     sf::Texture texture;
     sf::Sprite* sprite = nullptr;
+    Colider* colider = nullptr;
 
     bool SetTexture(const std::string& path);
 };

@@ -27,6 +27,26 @@ void Engine::SyncSpirtesPositionsWithTransform()
 		entity->sprite->setPosition({ entity->position.x, -entity->position.y });
 	}
 }
+void Engine::DrawColiders(bool draw)
+{
+	if (!draw)
+		return;
+	for (Entity* entity : entitesArray)
+	{
+		if (!entity->colider)
+			return;
+
+		sf::Vector2u* size = entity->colider->size;
+		sf::RectangleShape shape((sf::Vector2f)*size);
+
+		shape.setPosition({ entity->position.x, -entity->position.y });
+		shape.setOutlineColor(sf::Color::Blue);
+		shape.setOutlineThickness(4);
+		shape.setFillColor({0, 0, 0, 0});
+
+		window.draw(shape);
+	}
+}
 //////////
 //PUBLIC//
 //////////
@@ -76,5 +96,6 @@ void Engine::Update()
 	window.clear();
 	SyncSpirtesPositionsWithTransform();
 	DrawSprites();
+	DrawColiders(true);
 	window.display();
 }

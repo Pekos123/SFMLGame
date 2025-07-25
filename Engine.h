@@ -19,6 +19,7 @@ private:
 	inline static sf::Clock gameClock;
 
 	static void DrawSprites();
+	static void DrawColiders(bool draw = false);
 	static void SyncSpirtesPositionsWithTransform();
 public:
 	static float deltaTime;

@@ -1,6 +1,6 @@
 #include "Colider.h"
-Colider::Colider(const sf::Vector2f& size)
+
+Colider::Colider(const sf::Vector2u& size)
 {
-	width = size.x;
-	height = size.y;
+	this->size = new sf::Vector2u(size);
 }

@@ -24,6 +24,7 @@ bool Entity::SetTexture(const std::string& path)
         delete sprite;
 
     sprite = new sf::Sprite(texture);
+    colider = new Colider(texture.getSize());
 
     if (!spriteAlreadyAdded)
     {
