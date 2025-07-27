@@ -22,7 +22,7 @@ private:
             break;
         }
         std::cerr << "\033[0m";
-        std::cerr << file << " | " << line << " : " << msg;
+        std::cerr << file << " | " << line << " : " << msg << '\n';
         return new Alert();
     }
 

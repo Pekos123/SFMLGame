@@ -9,9 +9,9 @@ private:
 	//////////////////////////////////////////////////////////////////////
 	// WE NEED SMTH LIKE EVENT WHEN OBJECT COLIDING DO SMTH IN COLIDER.H//
 	//////////////////////////////////////////////////////////////////////
-	inline static std::vector<Colider*> colidersArray;
+	inline static std::vector<std::shared_ptr<Colider>> colidersArray;
 public:
-	static void AddColider(Colider* colider);
+	static void AddColider(std::shared_ptr<Colider> colider);
 	static Colider* GetCollisions(); // Check collisions in updateloop
 	static bool CheckCollision(Entity* firstEntity, Entity* secEntity); // cehck collision of 2 object
 };

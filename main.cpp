@@ -2,8 +2,12 @@
 #include "Engine.h"
 #include "Entity.h"
 #include "Physics.h"
+#include "Event.h"
 
 void MovePlayer(Entity* entity);
+void OnCollision();
+
+int i = 0;
 
 int main()
 {
@@ -16,8 +20,11 @@ int main()
     Entity test;
     test.SetTexture("images/sprite2.jpg");
     test.position = { 500, -50 };
+    test.SetScale({ 2, 2 });
 
-    int i = 0;
+    Event coliding;
+    coliding.AddListener(OnCollision);
+
     while (window->isOpen())
     {
         while (const std::optional event = window->pollEvent())
@@ -27,10 +34,7 @@ int main()
         }
         
         if (Physics::CheckCollision(&entity, &test))
-        {
-            i++;
-            std::cout << i << std::endl;
-        }
+            coliding.Invoke();
         
         MovePlayer(&entity);
 
@@ -52,4 +56,10 @@ void MovePlayer(Entity* entity)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
         direction = { 0, -speed * Engine::deltaTime };
     entity->position += direction;
+}
+
+void OnCollision()
+{
+    std::cout << "coliision " << i << std::endl;
+    i++;
 }

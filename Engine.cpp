@@ -37,8 +37,8 @@ void Engine::DrawColiders()
 		if (!entity->colider)
 			return;
 
-		sf::Vector2u* size = entity->colider->size;
-		sf::RectangleShape shape((sf::Vector2f)*size);
+		sf::Vector2u size = entity->colider->GetSize();
+		sf::RectangleShape shape((sf::Vector2f)size);
 
 		shape.setPosition({ entity->position.x, -entity->position.y });
 		shape.setOutlineColor(sf::Color::Blue);
@@ -51,13 +51,13 @@ void Engine::DrawColiders()
 //////////
 //PUBLIC//
 //////////
-void Engine::AddSprite(sf::Sprite* sprite)
-{
-	spritesArray.push_back(sprite);
-}
 void Engine::AddTransform(Transform* transform)
 {
 	transformsArray.push_back(transform);
+}
+void Engine::AddSprite(sf::Sprite* sprite)
+{
+	spritesArray.push_back(sprite);
 }
 void Engine::AddEntity(Entity* entity)
 {

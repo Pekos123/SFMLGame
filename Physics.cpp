@@ -9,7 +9,7 @@
 //////////
 //PUBLIC//
 //////////
-void Physics::AddColider(Colider* colider)
+void Physics::AddColider(std::shared_ptr<Colider> colider)
 {
 	colidersArray.push_back(colider);
 }
@@ -22,11 +22,14 @@ bool Physics::CheckCollision(Entity* firstEntity, Entity* secEntity)
 	sf::Vector2f firstPos = firstEntity->sprite->getPosition();
 	sf::Vector2f secPos = secEntity->sprite->getPosition();
 
-	Colider* firstCol = firstEntity->colider;
-	Colider* secCol = secEntity->colider;
+	sf::Vector2u firstColSize = firstEntity->colider->GetSize();
+	sf::Vector2u secColSize = secEntity->colider->GetSize();
 
-	bool colidingX = (firstPos.x + firstCol->size->x > secPos.x) && (firstPos.x < secPos.x + firstCol->size->x);
-	bool colidingY = (firstPos.y + firstCol->size->y > secPos.y) && (firstPos.y < secPos.y + firstCol->size->y);
+	bool colidingX = (firstPos.x + firstColSize.x > secPos.x) && (firstPos.x < secPos.x + secColSize.x);
+	bool colidingY = (firstPos.y + firstColSize.y > secPos.y) && (firstPos.y < secPos.y + secColSize.y);
+
+	//delete firstCol;
+	//delete secCol;
 
 	if(colidingX && colidingY)
 		return true;

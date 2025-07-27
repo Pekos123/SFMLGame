@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <iostream>
+#include <memory>
 #include "SFML/Graphics.hpp"
 #include "Entity.h"
 #include "Transform.h"
@@ -14,7 +15,7 @@ private:
 
 	inline static std::vector<sf::Sprite*> spritesArray;
 	inline static std::vector<Transform*> transformsArray;
-	inline static std::vector<Entity*> entitesArray;
+	inline static std::vector<Entity*> entitesArray; // bedzie lepie jchyba jak zostaneimy z raw pointers
 
 	inline static sf::Clock gameClock;
 

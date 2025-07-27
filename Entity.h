@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <memory>
 #include "Transform.h"
 #include "Colider.h"
 
@@ -17,4 +18,5 @@ public:
     Colider* colider = nullptr;
 
     bool SetTexture(const std::string& path);
+    void SetScale(const sf::Vector2u& scale) override;
 };
